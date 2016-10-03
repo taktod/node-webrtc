@@ -39,6 +39,6 @@ public:
 private:
   Constraints _mandatory;
   Constraints _optional;
-}
+};
 
 }
