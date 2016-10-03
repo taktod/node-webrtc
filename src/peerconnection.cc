@@ -4,13 +4,13 @@
 #include "peerconnection.h"
 
 #include "webrtc/api/mediaconstraintsinterface.h"
-#include "webrtc/api/test/fakeconstraints.h"
 #include "webrtc/base/refcount.h"
 
 #include "common.h"
 #include "create-answer-observer.h"
 #include "create-offer-observer.h"
 #include "datachannel.h"
+#include "nodeConstraints.h"
 #include "rtcstatsresponse.h"
 #include "set-local-description-observer.h"
 #include "set-remote-description-observer.h"
@@ -52,7 +52,7 @@ PeerConnection::PeerConnection()
   webrtc::PeerConnectionInterface::RTCConfiguration configuration;
   configuration.servers = _iceServers;
 
-  webrtc::FakeConstraints constraints;
+  NodeConstraints constraints;
   constraints.AddOptional(webrtc::MediaConstraintsInterface::kEnableDtlsSrtp, webrtc::MediaConstraintsInterface::kValueTrue);
   // FIXME: crashes without these constraints, why?
   constraints.AddMandatory(webrtc::MediaConstraintsInterface::kOfferToReceiveAudio, webrtc::MediaConstraintsInterface::kValueFalse);
